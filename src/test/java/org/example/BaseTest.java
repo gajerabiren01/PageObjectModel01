@@ -8,16 +8,19 @@ public class BaseTest extends BrowserManager {
 
     @BeforeMethod
     //open browser method
-    public void setUp() {
+    public void setUp()
+    {
         openBrowser();
     }
 
     @AfterMethod
-    //close browser method
-    public void tearDown(ITestResult result) {
-        if (!(result.isSuccess())) {
-            captureScreenshot(result.getName());
-        }
+    //close browser method which takes screenshot of error
+    public void tearDown(ITestResult result)
+    {
+//        if (!(result.isSuccess()))
+//        {
+//            captureScreenshot(result.getName());
+//        }
         closeBrowser();
     }
 

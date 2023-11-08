@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils extends BasePage
 {
@@ -88,6 +90,57 @@ public class Utils extends BasePage
     {
         Select selectDay = new Select(driver.findElement(by));
         selectDay.selectByVisibleText(text);
+    }
+
+    //to get web elements from DOM and add them in array list
+    public static void getArrayList(By by)
+    {
+            // prices arraylist created which stores web elements
+            List<WebElement> prices = driver.findElements(by);
+            //print size of prices web element
+            System.out.println(prices.size());
+            //empty array list productsprice created
+            List<String> productsPrice = new ArrayList<>();
+            //for each loop which goes through each element in prices array and retrive text and add them to productsprice arraylist
+            for (WebElement price:prices){
+                productsPrice.add(price.getText());
+            }
+            //printing out products price array
+            System.out.println(productsPrice);
+
+    }
+
+    public static void verifyCommentAddedAtLastPosition(By by)
+    {
+
+        // prices arraylist created which stores web elements
+        List<WebElement> prices = driver.findElements(by);
+        //print size of prices web element
+        System.out.println(prices.size());
+        //empty array list productsprice created
+        List<String> productsPrice = new ArrayList<>();
+        //for each loop which goes through each element in prices array and retrive text and add them to productsprice arraylist
+        for (WebElement price:prices){
+            productsPrice.add(price.getText());
+        }
+
+
+        System.out.println("All Comments: "+productsPrice);
+        String lastElement = productsPrice.get(productsPrice.size()-1);
+        System.out.println("Last Comment: "+lastElement);
+        if (lastElement.contains("Test working"))
+        {
+            System.out.println("comment added succesfully at last position");
+        }
+
+    }
+
+
+
+    public static void getArrayListSize(By by)
+    {
+        List<WebElement> prices = driver.findElements(by);
+        System.out.println(prices.size());
     }
 
 

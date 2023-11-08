@@ -1,6 +1,7 @@
 package org.example;
 
 import net.bytebuddy.build.Plugin;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestSuit extends BaseTest
@@ -18,7 +19,9 @@ public class TestSuit extends BaseTest
     LoginPage loginPage = new LoginPage();
     //emailResultPage object created
     EmailResultPage emailResultPage = new EmailResultPage();
-    //homepage object created
+    //newcomment page object created
+    NewCommnetPage newCommnetPage = new NewCommnetPage();
+
 
 
     @Test(priority = 1)
@@ -64,6 +67,63 @@ public class TestSuit extends BaseTest
         categoriesPage.sendEmailToFriendForReferringProduct();
         //confirmation for successfully referring product
         emailResultPage.verifyUserSuccessfullyReferredProduct();
+
+    }
+    @Test
+    public void printPrice(){
+        //print prices of products on homepage
+        homePage.productPrices();
+    }
+
+    @Test
+    public void alertAcceptHomePageSearch()
+    {
+        //click on search button without entering anything to get alert popup
+        homePage.clickOnSearchButton();
+        //accept the alert popup
+        driver.switchTo().alert().accept();
+    }
+
+    @Test
+    public void clickOnVoteToConfirmAlertMessage()
+    {
+        //click on vote button at the bottom for popup
+        homePage.clickOnVoteButton();
+        //verify correct alert message
+        homePage.verifyCorrectAlertMessage();
+
+    }
+
+    @Test
+    public void currencyChangeToEuroDropDown()
+    {
+
+        homePage.productPrices();
+        //product prices before selecting euro option
+        homePage.clickOnEuroButtonFromDropDown();
+        //select euro option from dropdown menu
+        homePage.productPrices();
+        //verify if currency changed to euro or not
+
+    }
+
+    @Test
+    public void verifyAddCommentAtBottomInNopCommerceNewRelease()
+    {
+        //click on details button on news new release
+        homePage.clickOnDetailsButtonOnNewsNewRelease();
+        // add comment and verify it got added
+        newCommnetPage.addCommentOnNewRelease();
+
+    }
+
+
+    @Test
+    public void verifyProductNameStartWithCorrectSearchInput()
+    {
+        //enter nike in searchbox and click
+        homePage.searchNikeOrAppleOnHomepage();
+        //verify all product start with correct string
 
     }
 
